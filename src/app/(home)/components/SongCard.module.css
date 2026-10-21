@@ -1,0 +1,71 @@
+.songCard {
+  background-color: #09090b;
+  color: aliceblue;
+
+  border-radius: 20px;
+  border: 2px solid #27272a;
+
+  margin: 12px;
+  padding: 16px;
+
+  height: 40px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  .rightPart {
+    display: flex;
+    align-items: center;
+  }
+}
+
+.playButton {
+  background-color: #dd7400;
+  color: aliceblue;
+
+  border-radius: 8px;
+  border: 2px solid #3f3f46;
+
+  padding: 8px 16px;
+  margin: 4px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: 0.2s;
+
+  &:hover {
+    background-color: #f99c00;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+  }
+}
+
+.editButton {
+  background-color: #09090b;
+  color: aliceblue;
+
+  border-radius: 8px;
+  border: 2px solid #3f3f46;
+
+  padding: 8px 16px;
+  margin: 4px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  transition: 0.2s;
+
+  &:hover {
+    background-color: #27272a;
+
+    cursor: pointer;
+
+    transition: 0.2s;
+  }
+}
