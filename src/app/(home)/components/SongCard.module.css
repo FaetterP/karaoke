@@ -18,6 +18,14 @@
     display: flex;
     align-items: center;
   }
+
+  &.error {
+    background-color: #270608;
+
+    .errorMessage {
+      font-style: italic;
+    }
+  }
 }
 
 .playButton {
