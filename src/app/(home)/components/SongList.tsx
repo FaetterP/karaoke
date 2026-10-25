@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { useFavorites } from "../../../store/favoriteSongs";
 import { ESongError } from "../../../enums";
@@ -16,10 +16,17 @@ export default function SongList(props: PropsType) {
   const items = useFavorites((state) => state.favoriteSong);
 
   return (
-    <div className={styles.songList}>
-      {props.songs.map((song) => (
-        <SongCard key={song.name} {...song} />
-      ))}
+    <div>
+      <div className={styles.songList}>
+        {items.map((songName) => (
+          <SongCard key={songName} {...props.songs.find((song) => song.name === songName)!} />
+        ))}
+      </div>
+      <div className={styles.songList}>
+        {props.songs.map((song) => (
+          <SongCard key={song.name} {...song} />
+        ))}
+      </div>
     </div>
   );
 }
