@@ -1,4 +1,9 @@
+import fs from "node:fs";
+import path from "node:path";
+import { LyricsContent } from "@/src/types";
 import { KaraokePlayer } from "./components/KaraokePlayer";
+import Lyrics from "./components/Lyrics";
+import styles from "./page.module.css"
 
 type PropsType = {
   params: Promise<{
@@ -8,11 +13,15 @@ type PropsType = {
 
 export default async function Page(props: PropsType) {
   const params = await props.params;
-  const audioUrl = `/api/song/${encodeURIComponent(params.songName)}`;
+  params.songName = decodeURIComponent(params.songName);
+
+  const lyricsPath = path.join(process.cwd(), "songs", params.songName, "lyrics.json");
+  const lyrics = JSON.parse(fs.readFileSync(lyricsPath, "utf-8")) as LyricsContent;
 
   return (
-    <div>
-        <KaraokePlayer songName={params.songName}/>
+    <div className={styles.container}>
+      <KaraokePlayer songName={params.songName} />
+      <Lyrics lines={lyrics} />
     </div>
   );
 }

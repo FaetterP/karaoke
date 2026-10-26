@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState, type MouseEvent } from "react";
 import AudioPlayer from "./AudioPlayer";
+import { usePlayback } from "@/src/store/playback";
 import styles from "./KaraokePlayer.module.css";
 
 type PropsType = {
@@ -15,6 +16,7 @@ export function KaraokePlayer(props: PropsType) {
   const [focusedAudio, setFocusedAudio] = useState<HTMLAudioElement | null>(null);
   const [time, setTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const setTimeToStore = usePlayback((state) => state.setTimeMs);
 
   useEffect(() => {
     const audios = [minusRef.current!, fullRef.current!];
@@ -50,6 +52,20 @@ export function KaraokePlayer(props: PropsType) {
       focusedAudio.removeEventListener("loadedmetadata", update);
     };
   }, [focusedAudio]);
+
+  useEffect(() => {
+    if (!focusedAudio) return;
+
+    let frame = 0;
+    const tick = () => {
+      setTimeToStore(focusedAudio.currentTime * 1000);
+      frame = requestAnimationFrame(tick);
+    };
+    frame = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(frame);
+  }, [focusedAudio, setTimeToStore]);
+
+  useEffect(() => () => setTimeToStore(0), [setTimeToStore]);
 
   const onClickWave = useCallback((ratio: number) => {
     const clamped = Math.min(1, Math.max(0, ratio));
