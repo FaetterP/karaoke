@@ -1,0 +1,50 @@
+.player {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 4px 6px;
+  border-radius: 8px;
+}
+
+.playButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+
+  width: 32px;
+  height: 32px;
+
+  border: none;
+  border-radius: 50%;
+
+  background: #27272a;
+  color: white;
+
+  cursor: pointer;
+
+  &:hover {
+    background: #3f3f46;
+  }
+}
+
+.muteButton {
+  flex-shrink: 0;
+  border: none;
+  background: none;
+  color: #71717a;
+  cursor: pointer;
+  transition: color 0.15s;
+
+  &:hover {
+    color: #d4d4d8;
+  }
+}
+
+.volume {
+  display: none;
+  flex-shrink: 0;
+  width: 64px;
+  cursor: pointer;
+  display: block;
+}

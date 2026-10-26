@@ -14,27 +14,27 @@ export default function SongCard(props: PropsType) {
   const removeItem = useFavorites((state) => state.removeItem);
 
   const isFavorite = favoriteSongs.includes(props.name);
-  
+
   return (
     <div className={`${styles.songCard} ${!!props.error ? styles.error : ""}`}>
       <div className={styles.leftPart}>
-                        <svg
-                  viewBox="0 0 24 24"
-                  className={styles.star}
-                  fill={isFavorite ? "currentColor" : "none"}
-                  stroke="currentColor"
-                  strokeWidth="1.5"
-                  strokeLinejoin="round"
-                  onClick={() => {
-                    if (isFavorite) {
-                      removeItem(props.name);}
-                    else {
-                      addItem(props.name);
-                    }
-                  }}
-                >
-                  <path d="M12 3.5l2.7 5.47 6.04.88-4.37 4.26 1.03 6.01L12 17.28l-5.4 2.84 1.03-6.01L3.26 9.85l6.04-.88L12 3.5z" />
-                </svg>
+        <svg
+          viewBox="0 0 24 24"
+          className={styles.star}
+          fill={isFavorite ? "currentColor" : "none"}
+          stroke="currentColor"
+          strokeWidth="1.5"
+          strokeLinejoin="round"
+          onClick={() => {
+            if (isFavorite) {
+              removeItem(props.name);
+            } else {
+              addItem(props.name);
+            }
+          }}
+        >
+          <path d="M12 3.5l2.7 5.47 6.04.88-4.37 4.26 1.03 6.01L12 17.28l-5.4 2.84 1.03-6.01L3.26 9.85l6.04-.88L12 3.5z" />
+        </svg>
         <span>{props.name}</span>
       </div>
 
