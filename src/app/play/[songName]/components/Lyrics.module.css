@@ -1,5 +1,9 @@
 .lyrics {
   text-align: center;
+
+  &.hide {
+    opacity: 0;
+  }
 }
 
 .line,

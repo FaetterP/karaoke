@@ -9,18 +9,17 @@ type PropsType = {
 };
 
 export default function Lyrics(props: PropsType) {
-  const { lines } = props;
-
-  const currentIndex = usePlayback((state) => findCurrentIndex(lines, state.timeMs));
+  const currentIndex = usePlayback((state) => findCurrentIndex(props.lines, state.timeMs));
+  const isHide = usePlayback((state) => state.isHide);
 
   const base = Math.max(currentIndex, 0);
   const indices = Array.from({ length: 4 }, (_, slot) => base + ((slot - base) % 4 + 4) % 4);
 
   return (
-    <div className={styles.lyrics}>
+    <div className={`${styles.lyrics} ${isHide?styles.hide:""}`}>
       {indices.map((index, slot) => (
         <p key={slot} className={index === currentIndex ? styles.active : styles.line}>
-          {lines[index]?.text || "-"}
+          {props.lines[index]?.text || "-"}
         </p>
       ))}
     </div>

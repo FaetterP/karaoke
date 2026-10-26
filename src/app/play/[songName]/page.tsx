@@ -4,6 +4,7 @@ import { LyricsContent } from "@/src/types";
 import { KaraokePlayer } from "./components/KaraokePlayer";
 import Lyrics from "./components/Lyrics";
 import styles from "./page.module.css"
+import HideLyricsButton from "./components/HideLyricsButton";
 
 type PropsType = {
   params: Promise<{
@@ -21,6 +22,7 @@ export default async function Page(props: PropsType) {
   return (
     <div className={styles.container}>
       <KaraokePlayer songName={params.songName} />
+      <HideLyricsButton />
       <Lyrics lines={lyrics} />
     </div>
   );
